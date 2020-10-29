@@ -13,6 +13,7 @@ import static org.junit.Assert.*;
 public class VarastoTest {
 
     Varasto varasto;
+    Varasto varasto2;
     double vertailuTarkkuus = 0.0001;
 
     @Before
@@ -22,13 +23,34 @@ public class VarastoTest {
 
     @Test
     public void konstruktoriLuoTyhjanVaraston() {
-        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+        varasto2 = new Varasto(0);
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(0.0);
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
-    public void uudellaVarastollaOikeaTilavuus() {
+    public void uudellaVarastollaOikeaTilavuusJaAlkusaldo() {
         assertEquals(10, varasto.getTilavuus(), vertailuTarkkuus);
+        assertEquals(0, varasto.getSaldo(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(0, 0);
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(10, 0);
+        assertEquals(10, varasto2.getTilavuus(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(10, 9);
+        assertEquals(9, varasto2.getSaldo(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(10, 11);
+        assertEquals(10, varasto2.getSaldo(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(10, -1);
+        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
     }
+
 
     @Test
     public void lisaysLisaaSaldoa() {
@@ -36,6 +58,14 @@ public class VarastoTest {
 
         // saldon pitäisi olla sama kun lisätty määrä
         assertEquals(8, varasto.getSaldo(), vertailuTarkkuus);
+
+        varasto2 = new Varasto(10);
+        varasto2.lisaaVarastoon(-1);
+        // implicit assertion
+
+        varasto2 = new Varasto(10,8);
+        varasto2.lisaaVarastoon(3);
+        assertEquals(10, varasto2.getSaldo(), vertailuTarkkuus);
     }
 
     @Test
@@ -53,6 +83,13 @@ public class VarastoTest {
         double saatuMaara = varasto.otaVarastosta(2);
 
         assertEquals(2, saatuMaara, vertailuTarkkuus);
+
+        varasto.otaVarastosta(-1);
+        // implicit assertion
+
+        varasto2 = new Varasto(10, 2);
+        assertEquals(2, varasto2.otaVarastosta(100), vertailuTarkkuus);
+
     }
 
     @Test
@@ -63,6 +100,12 @@ public class VarastoTest {
 
         // varastossa pitäisi olla tilaa 10 - 8 + 2 eli 4
         assertEquals(4, varasto.paljonkoMahtuu(), vertailuTarkkuus);
+    }
+
+    @Test
+    public void tulostaaMerkkijonoesityksenOikein() {
+        varasto2 = new Varasto(10, 0);
+        assertEquals("saldo = 0.0, vielä tilaa 10.0", varasto2.toString());
     }
 
 }
