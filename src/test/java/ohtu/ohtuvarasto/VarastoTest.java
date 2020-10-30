@@ -87,6 +87,7 @@ public class VarastoTest {
         varasto.otaVarastosta(-1);
         // implicit assertion
 
+        //
         varasto2 = new Varasto(10, 2);
         assertEquals(2, varasto2.otaVarastosta(100), vertailuTarkkuus);
 
