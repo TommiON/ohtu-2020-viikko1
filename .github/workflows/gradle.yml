@@ -8,7 +8,10 @@ on:
     branches: [ main ]
 
 jobs:
-  run_tests:
+  run_- name: Code coverage rapost
+      run: ./gradlew jacocoTestReport
+    - name: Data to codecov
+      run: bash <(curl -s https://codecov.io/bash)tests:
 
     runs-on: ubuntu-latest
 
@@ -22,3 +25,8 @@ jobs:
       run: chmod +x gradlew
     - name: Test with Gradle
       run: ./gradlew test
+    - name: Code coverage rapost
+      run: ./gradlew jacocoTestReport
+    - name: Data to codecov
+      run: bash <(curl -s https://codecov.io/bash)
+      
