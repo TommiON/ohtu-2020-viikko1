@@ -88,8 +88,7 @@ public class VarastoTest {
         // implicit assertion
 
         varasto2 = new Varasto(10, 2);
-        // eka parametri 2 -> 3
-        assertEquals(3, varasto2.otaVarastosta(100), vertailuTarkkuus);
+        assertEquals(2, varasto2.otaVarastosta(100), vertailuTarkkuus);
 
     }
 
