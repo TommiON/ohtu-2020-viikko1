@@ -48,7 +48,7 @@ public class VarastoTest {
         assertEquals(10, varasto2.getSaldo(), vertailuTarkkuus);
 
         varasto2 = new Varasto(10, -1);
-        assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
+        assertEquals(-1, varasto2.getSaldo(), vertailuTarkkuus);
     }
 
 
