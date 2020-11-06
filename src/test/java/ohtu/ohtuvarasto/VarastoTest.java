@@ -30,6 +30,9 @@ public class VarastoTest {
         assertEquals(0, varasto2.getSaldo(), vertailuTarkkuus);
     }
 
+    /*
+    */
+
     @Test
     public void uudellaVarastollaOikeaTilavuusJaAlkusaldo() {
         assertEquals(10, varasto.getTilavuus(), vertailuTarkkuus);
